@@ -1,13 +1,13 @@
-const loginForm = document.querySelector("#login-form");
-const loginInput = document.querySelector("#login-form input");
+const loginForm = document.querySelector("#login-div");
+const loginInput = document.querySelector("#login-div input");
 const greeting = document.querySelector("#greeting");
 
-const HIDDEN_CLASS = "hidden"
-const USERNAME_KEY = "username"
+const HIDDEN_CLASS = "hidden";
+const USERNAME_KEY = "username";
 
-const clock = document.querySelector("#clock-div")
-
-const todoDiv = document.querySelector("#todo-div")
+const clock = document.querySelector("#clock-div");
+const todoDiv = document.querySelector("#todo-div");
+const weatherDiv = document.querySelector("#weather-div");
 
 function onLoginSubmit(event){
     event.preventDefault();
@@ -20,6 +20,7 @@ function showGreeting(username){
     greeting.classList.remove(HIDDEN_CLASS);
     clock.classList.remove(HIDDEN_CLASS);
     todoDiv.classList.remove(HIDDEN_CLASS);
+    weatherDiv.classList.remove(HIDDEN_CLASS);
     greeting.innerText = `Hello, ${username}`;
 }
 /*

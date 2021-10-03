@@ -15,12 +15,15 @@ function deleteToDo(event){
     // console.log(event.target.parentElement); // 버튼이 클릭됐을 때 부모요소(li)의 text를 보여줌으로써 여러개의 버튼 중 어느 것이 클릭되었는지 알려줌
     const li = event.target.parentElement;
     li.remove(); // 버튼이 클릭됐을 때 그 버튼이 속한 부모요소 li 전체를 삭제한다. (5)
+    toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id)); // 클릭된 버튼이 속한 li와 id가 같은 것을 제외한, filter를 거친 나머지 것들로 toDos array를 업데이트한다. (parseInt : string(li.id)을 숫자로 바꿔준다) (18)
+    saveToDos(); // 클릭한 todo가 제거된 상태를 localStorage에 저장한다. (19)
 }
 
 function paintToDo(newTodo){
     const makeList = document.createElement("li");
+    makeList.id = newTodo.id; // li가 newTodoObj(todo를 만들면서 부여된 고유의) id를 가지게 한다. (17)
     const makeSpan = document.createElement("span");
-    makeSpan.innerText = newTodo;
+    makeSpan.innerText = newTodo.text; // newTodo만 받아오면 [object Object]라고 뜨기 때문에 .text를 붙여서 newTodoObj 속의 text를 뜨게 해준다. (16)
     const makeButton = document.createElement("button");
     makeButton.innerText = "❌";
     makeButton.addEventListener("click", deleteToDo); // 만들어진 버튼을 클릭하면 deleteToDo 이벤트가 발생하게 한다. (4)
@@ -34,8 +37,12 @@ function handleToDoSubmit(event){
     event.preventDefault();
     const newTodo = toDoInput.value; // toDoInput의 value를 비워버리기 전에 그 값을 newToDo에다 저장해둔다. (1)
     toDoInput.value = "";
-    toDos.push(newTodo); // newTodo를 toDos array 안에 밀어넣는다. (7)
-    paintToDo(newTodo);
+    const newTodoObj = {
+        text: newTodo,
+        id: Date.now(),
+    }; // todo가 추가될 때 각자 고유의 id를 가지고 array에 들어가게 한다.(13)
+    toDos.push(newTodoObj); // newTodo를 toDos array 안에 밀어넣는다. (7) -> newTodoObj를 toDos array 안에 밀어넣는다. (14)
+    paintToDo(newTodoObj); // paintToDo에 newTodo말고 newTodoObj를 넣어준다.(그러면 text가 아니라서 이상하게 뜸) (15)
     saveToDos();
 }
 
