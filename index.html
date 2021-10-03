@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/style.css">
+    <title>Hello</title>
+</head>
+<body>
+    <div id="login-form" class="hidden">
+        <form>
+            <h1>Hello, what's your name?</h1>
+            <input type="text" required>
+        </form>
+    </div>
+    <div id="greeting" class="hidden">
+    </div>
+    <div id="clock-div" class="hidden">
+        <span></span>
+    </div>
+    <div id="todo-div" class="hidden">
+        <form id="todo-form">
+            <input id="todo-input" type="text" placeholder="Write a To Do and Press Enter" required>
+        </form>
+        <ul id="todo-list"></ul>
+    </div>
+    <script src="src/login.js"></script>
+    <script src="src/clock.js"></script>
+    <script src="src/todo.js"></script>
+</body>
+</html>
